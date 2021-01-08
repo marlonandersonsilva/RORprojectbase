@@ -1,0 +1,2 @@
+class Lesion < ApplicationRecord
+end

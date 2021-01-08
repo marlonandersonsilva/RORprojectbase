@@ -1,0 +1,35 @@
+<%= form_with(model: animal, local: true) do |form| %>
+  <% if animal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(animal.errors.count, "error") %> prohibited this animal from being saved:</h2>
+
+      <ul>
+      <% animal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lesion %>
+    <%= collection_select(:animal, :lesion_id,Lesion.all,:id,:name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.number_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :age %>
+    <%= form.number_field :age %>
+  </div>
+  <div class="field">
+    <%= form.label :categories %>
+    <%= collection_check_boxes(:animal, :category_ids,Category.all,:id,:name) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
